@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>司機出勤登錄系統</title>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" name='prtbody' id='prtbody' onscroll="mov_prt();">
+<form name="form1" id="form1" method="post" action="http://218.211.169.149:8080/EMP/EMP_Login.jsp">
+X:<input type="text" name="PX" id="PX" value=''>
+Y:<input type="text" name="PY" id="PY" value=''>
+<input type="hidden" name="smt_chk" id="smt_chk" value=''>
+<input type="hidden" name="smt_chk" id="smt_chk" value='Summit' onclick="smt();">
+</form>
+<script>
+function smt(){
+	//alert("geolocation");
+	//alert("geolocation" in navigator);
+  if("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    alert("此瀏覽器不支援定位程式!!!");
+  }
+}
+function showPosition(position) {
+	  var c=0;
+	  var x = position.coords.latitude ; 
+	  var y = position.coords.longitude;
+	  PX.value=x;
+	  PY.value=y;
+	  
+		if(x>25.002160 || x<25.000200 || y>121.48650 || y<121.48400){
+	  	alert("你的定位不在有效範圍,無法登入~!!!");	
+	  	c=1;
+	  }else{
+			c=0;
+		}
+	  if(c==0){
+				var smt_chk = document.getElementsByName("smt_chk");
+				smt_chk[0].value="";
+				document.form1.submit();
+		}
+}
+smt();
+</script>
+</body>
+</html>
