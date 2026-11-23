@@ -33,7 +33,7 @@ function showPosition(position){
 	var y = position.coords.longitude;
 	document.getElementById("PX").value = x;
 	document.getElementById("PY").value = y;
-	if(x>25.002170 || x<25.000200 || y>121.48700 || y<121.48400){
+	if(x>25.002180 || x<25.000200 || y>121.48800 || y<121.48400){
 		alert("你的定位不在有效範圍,無法登入~!!!");
 		return;
 	}
